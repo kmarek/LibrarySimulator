@@ -8,15 +8,17 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
     {
         private const int MaxItemsCountStudent = 4;
         private const int MaxItemsCountLecturer = 10;
-        private List<Item> _items;
-        private List<User> _users;
-        private int _availableCardNumber;
+        private List<ItemCard> _itemCards;
+        private List<UserCard> _userCards;
+        private int _availableUserCardNumber;
+        private int _availableItemCardNumber;
 
         public Library()
         {
-            _items = new List<Item>();
-            _users = new List<User>();
-            _availableCardNumber = 1;
+            _itemCards = new List<ItemCard>();
+            _userCards = new List<UserCard>();
+            _availableUserCardNumber = 1;
+            _availableItemCardNumber = 1;
         }
 
         #region Required Methods
@@ -28,7 +30,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
         public void AddItemToLibrary(params Item[] items)
         {
-            items.ToList().ForEach(item => _items.Add(item));
+            items.ToList().ForEach(item => _itemCards.Add(item));
         }
 
         public bool RentItemToUser(Item item, User user)
@@ -38,31 +40,31 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
         public void PrintListOfMagazines()
         {
-            Console.WriteLine($"List of {_items.Count(i => i is Magazine)} Magazines");
+            Console.WriteLine($"List of {_itemCards.Count(i => i.Type == 'M')} Magazines");
 
-            _items.Where(i => i is Magazine).ToList().ForEach(item =>
+            _itemCards.Where(i => i.Type == 'M').ToList().ForEach(item =>
             {
-                //Console.WriteLine($"{item};{item};{item};{(user is Student ? "S" : "L")}");
+                Console.WriteLine($"{item.Title};{item.AuthorOrNumber};");
             });
         }
 
         public void PrintListOfBooks()
         {
-            Console.WriteLine($"List of {_items.Count(i => i is Book)} Books");
+            Console.WriteLine($"List of {_itemCards.Count(i => i.Type == 'B')} Magazines");
 
-            _items.Where(i => i is Book).ToList().ForEach(item =>
+            _itemCards.Where(i => i.Type == 'B').ToList().ForEach(item =>
             {
-                //Console.WriteLine($"{item};{item};{item};{(user is Student ? "S" : "L")}");
+                Console.WriteLine($"{item.Title};{item.AuthorOrNumber};");
             });
         }
 
         public void PrintListOfUsers()
         {
-            Console.WriteLine($"List of {_users.Count} Users.");
+            Console.WriteLine($"List of {_userCards.Count} Users.");
 
-            _users.ForEach(user =>
+            _userCards.ForEach(user =>
             {
-                Console.WriteLine($"{user.FirstName};{user.LastName};{user.GetCardId()};{(user is Student ? "S" : "L")}");
+                Console.WriteLine($"{user.FirstName};{user.LastName};{user.Id};{(user is Student ? "S" : "L")}");
             });
         }
 
@@ -80,8 +82,8 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
         #region Additional Public Methods
 
-        public List<Item> GetItems() => _items;
-        public List<User> GetUsers() => _users;
+        public List<ItemCard> GetItems() => _itemCards;
+        public List<UserCard> GetUsers() => _userCards;
 
         #endregion
 
@@ -89,18 +91,14 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
         private void AddUser(User user)
         {
-            if (user is Student)
-            {
-                Student student = new(user.FirstName, user.LastName);
-                student.LibraryCard = new LibraryCard(_availableCardNumber++, MaxItemsCountStudent);
-                _users.Add(student);
-            }
-            else
-            {
-                Lecturer lecturer = new(user.FirstName, user.LastName);
-                lecturer.LibraryCard = new LibraryCard(_availableCardNumber++, MaxItemsCountLecturer);
-                _users.Add(lecturer);
-            }
+            int maxCount = user is Student ? MaxItemsCountStudent : MaxItemsCountLecturer;
+
+            UserCard userCard = new(user.FirstName, user.LastName, _availableUserCardNumber++, maxCount);
+        }
+
+        private void AddItem(Item item)
+        {
+            var a = _availableItemCardNumber++;
         }
 
         #endregion

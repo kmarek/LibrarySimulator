@@ -6,14 +6,12 @@ namespace KamilMarek.Qa.LibrarySimulator.Core.Users
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public LibraryCard? LibraryCard { get; set; }
+        public int LibraryCardId { get; set; }
 
         public User(string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
         }
-
-        public int GetCardId() => LibraryCard?.CardId ?? 0;
     }
 }

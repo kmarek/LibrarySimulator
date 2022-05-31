@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\KamilMarek.Qa.LibrarySimulator.Library\KamilMarek.Qa.LibrarySimulator.Library.csproj" />
+		<ProjectReference Include="..\KamilMarek.Qa.LibrarySimulator.Library\KamilMarek.Qa.LibrarySimulator.Core.csproj" />
 	</ItemGroup>
 
 </Project>

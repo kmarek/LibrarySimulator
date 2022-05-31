@@ -1,4 +1,4 @@
-﻿namespace KamilMarek.Qa.LibrarySimulator.Library.Users
+﻿namespace KamilMarek.Qa.LibrarySimulator.Core.Users
 {
     public class Lecturer : User
     {

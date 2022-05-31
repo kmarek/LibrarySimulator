@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KamilMarek.Qa.LibrarySimulator.Library.Items
+﻿namespace KamilMarek.Qa.LibrarySimulator.Core.Items
 {
     public class Item
     {
+        public string Title { get; private set; }
+
+        public Item(string title)
+        {
+            Title = title;
+        }
     }
 }

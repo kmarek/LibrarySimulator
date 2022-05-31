@@ -1,4 +1,6 @@
-﻿namespace KamilMarek.Qa.LibrarySimulator.Library.Users
+﻿using KamilMarek.Qa.LibrarySimulator.Core.LibraryItems;
+
+namespace KamilMarek.Qa.LibrarySimulator.Core.Users
 {
     public class User
     {

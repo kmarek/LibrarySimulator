@@ -1,7 +1,8 @@
-﻿using KamilMarek.Qa.LibrarySimulator.Library.Items;
-using KamilMarek.Qa.LibrarySimulator.Library.Users;
+﻿using KamilMarek.Qa.LibrarySimulator.Core.Items;
+using KamilMarek.Qa.LibrarySimulator.Core.LibraryItems;
+using KamilMarek.Qa.LibrarySimulator.Core.Users;
 
-namespace KamilMarek.Qa.LibrarySimulator.Library
+namespace KamilMarek.Qa.LibrarySimulator.Core
 {
     public class Library
     {
@@ -37,17 +38,32 @@ namespace KamilMarek.Qa.LibrarySimulator.Library
 
         public void PrintListOfMagazines()
         {
+            Console.WriteLine($"List of {_items.Count(i => i is Magazine)} Magazines");
 
+            _items.Where(i => i is Magazine).ToList().ForEach(item =>
+            {
+                //Console.WriteLine($"{item};{item};{item};{(user is Student ? "S" : "L")}");
+            });
         }
 
         public void PrintListOfBooks()
         {
+            Console.WriteLine($"List of {_items.Count(i => i is Book)} Books");
 
+            _items.Where(i => i is Book).ToList().ForEach(item =>
+            {
+                //Console.WriteLine($"{item};{item};{item};{(user is Student ? "S" : "L")}");
+            });
         }
 
         public void PrintListOfUsers()
         {
+            Console.WriteLine($"List of {_users.Count} Users.");
 
+            _users.ForEach(user =>
+            {
+                Console.WriteLine($"{user.FirstName};{user.LastName};{user.GetCardId()};{(user is Student ? "S" : "L")}");
+            });
         }
 
         public void ImportItemsFromFile(string csvFile)

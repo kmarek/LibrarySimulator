@@ -30,7 +30,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
         public void AddItemToLibrary(params Item[] items)
         {
-            items.ToList().ForEach(item => _itemCards.Add(item));
+            items.ToList().ForEach(item => AddItem(item));
         }
 
         public bool RentItemToUser(Item item, User user)
@@ -64,7 +64,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
             _userCards.ForEach(user =>
             {
-                Console.WriteLine($"{user.FirstName};{user.LastName};{user.Id};{(user is Student ? "S" : "L")}");
+                Console.WriteLine($"{user.FirstName};{user.LastName};{user.Id};{user.Type}");
             });
         }
 
@@ -92,13 +92,34 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
         private void AddUser(User user)
         {
             int maxCount = user is Student ? MaxItemsCountStudent : MaxItemsCountLecturer;
+            char type = user is Student ? 'S' : 'L';
 
-            UserCard userCard = new(user.FirstName, user.LastName, _availableUserCardNumber++, maxCount);
+            UserCard userCard = new(_availableUserCardNumber++, user.FirstName, user.LastName, maxCount);
+            userCard.Type = type;
+
+            _userCards.Add(userCard);
         }
 
         private void AddItem(Item item)
         {
-            var a = _availableItemCardNumber++;
+            string authorOrNumber;
+            char type;
+
+            if (item is Book)
+            {
+                Book book = (Book)item;
+                authorOrNumber = book.Author;
+                type = 'B';
+            }
+            else
+            {
+                Magazine magazine = (Magazine)item;
+                authorOrNumber = magazine.Number;
+                type = 'M';
+            }
+
+            ItemCard itemCard = new(_availableItemCardNumber++, item.Title, type, authorOrNumber);
+            _itemCards.Add(itemCard);
         }
 
         #endregion

@@ -37,7 +37,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Library.UnitTests
 
             Library.AddUserToLibrary(lecturer);
             Library.GetUsers().Count.Should().Be(1);
-            Library.GetUsers().First().GetCardId().Should().Be(1);
+            Library.GetUsers().First().Id.Should().Be(1);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Library.UnitTests
             Lecturer lecturer = new(Faker.Person.FirstName, Faker.Person.LastName);
 
             Library.AddUserToLibrary(lecturer);
-            Library.GetUsers().First().GetCardId().Should().Be(1);
+            Library.GetUsers().First().Id.Should().Be(1);
         }
 
         [Fact]
@@ -69,8 +69,8 @@ namespace KamilMarek.Qa.LibrarySimulator.Library.UnitTests
 
             var libraryUsers = Library.GetUsers();
             libraryUsers.Count.Should().Be(2);
-            libraryUsers[0].GetCardId().Should().Be(1);
-            libraryUsers[1].GetCardId().Should().Be(2);
+            libraryUsers[0].Id.Should().Be(1);
+            libraryUsers[1].Id.Should().Be(2);
         }
     }
 }

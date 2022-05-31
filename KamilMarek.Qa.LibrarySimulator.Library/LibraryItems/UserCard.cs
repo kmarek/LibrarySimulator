@@ -9,8 +9,9 @@ namespace KamilMarek.Qa.LibrarySimulator.Core.LibraryItems
         public string LastName { get; set; }
         public List<ItemCard> RentedItems { get; set; }
         public int MaxItemsCount { get; private set; }
+        public char Type { get; set; }
 
-        public UserCard(string firstName, string lastName, int id, int maxItemsCount)
+        public UserCard(int id, string firstName, string lastName, int maxItemsCount)
         {
             FirstName = firstName;
             LastName = lastName;

@@ -35,7 +35,17 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
         public bool RentItemToUser(Item item, User user)
         {
-            return false;
+            var userCard = _userCards.FirstOrDefault(c => c.Id == user.LibraryCardId);
+
+            if (userCard == null)
+                return false;
+
+            var itemCard = _itemCards.FirstOrDefault(i => i.Title == item.Title);
+
+            if (itemCard == null)
+                return false;
+
+            return true;
         }
 
         public void PrintListOfMagazines()
@@ -97,6 +107,8 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
 
             UserCard userCard = new(_availableUserCardNumber++, user.FirstName, user.LastName, maxCount);
             userCard.Type = type;
+
+            user.LibraryCardId = userCard.Id;
 
             _userCards.Add(userCard);
         }

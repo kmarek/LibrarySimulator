@@ -1,5 +1,4 @@
-﻿using Bogus;
-using KamilMarek.Qa.LibrarySimulator.Core.Users;
+﻿using KamilMarek.Qa.LibrarySimulator.Core.Users;
 
 namespace KamilMarek.Qa.LibrarySimulator.Core.UnitTests
 {

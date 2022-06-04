@@ -1,8 +1,8 @@
 using KamilMarek.Qa.LibrarySimulator.Core.Items;
 
-namespace KamilMarek.Qa.LibrarySimulator.Library.UnitTests
+namespace KamilMarek.Qa.LibrarySimulator.Core.UnitTests
 {
-    public class LibraryItemsTests : BaseTest
+    public class AddingItemsTests : BaseTest
     {
         [Fact]
         public void Should_CreateLibrary_WithoutItems()
@@ -13,7 +13,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Library.UnitTests
         [Fact]
         public void Should_AddBookToLibrary_When_ItemIsNotInLibrary()
         {
-            Book book = new("J.R.R. Tolkien", "The Hobbit");
+            Book book = ItemHelper.GetRandomBook();
 
             Library.AddItemToLibrary(book);
             Library.GetItems().Count.Should().Be(1);

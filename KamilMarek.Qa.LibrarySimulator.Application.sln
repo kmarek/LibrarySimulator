@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamilMarek.Qa.LibrarySimula
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamilMarek.Qa.LibrarySimulator.Core", "KamilMarek.Qa.LibrarySimulator.Library\KamilMarek.Qa.LibrarySimulator.Core.csproj", "{0CD960E7-FFF3-486E-AD7E-69F1F8B2F465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KamilMarek.Qa.LibrarySimulator.Library.UnitTests", "KamilMarek.Qa.LibrarySimulator.Library.UnitTests\KamilMarek.Qa.LibrarySimulator.Library.UnitTests.csproj", "{29C88689-E9DC-48E2-8A0B-D7176767A918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KamilMarek.Qa.LibrarySimulator.Core.UnitTests", "KamilMarek.Qa.LibrarySimulator.Library.UnitTests\KamilMarek.Qa.LibrarySimulator.Core.UnitTests.csproj", "{29C88689-E9DC-48E2-8A0B-D7176767A918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

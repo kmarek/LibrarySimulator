@@ -83,6 +83,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
         #region Additional Public Methods
 
         public List<ItemCard> GetItems() => _itemCards;
+        public int GetUniqueItemCount() => GetUniqueBookCount() + GetUniqueMagazineCount();
         public List<UserCard> GetUsers() => _userCards;
 
         #endregion
@@ -103,7 +104,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
         private void AddItem(Item item)
         {
             string authorOrNumber;
-            char type;
+            char type = item is Book ? 'B' : 'M';
 
             if (item is Book)
             {
@@ -121,6 +122,16 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
             ItemCard itemCard = new(_availableItemCardNumber++, item.Title, type, authorOrNumber);
             _itemCards.Add(itemCard);
         }
+
+        private int GetUniqueBookCount() => _itemCards
+            .Where(i => i.Type == 'B')
+            .GroupBy(item => item.Title + item.AuthorOrNumber)
+            .Count();
+
+        private int GetUniqueMagazineCount() => _itemCards
+            .Where(i => i.Type == 'M')
+            .GroupBy(item => item.Title + item.AuthorOrNumber)
+            .Count();
 
         #endregion
     }

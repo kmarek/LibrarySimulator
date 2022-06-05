@@ -40,7 +40,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
             if (userCard == null)
                 return false;
 
-            var itemCard = _itemCards.FirstOrDefault(i => i.Title == item.Title);
+            var itemCard = _itemCards.FirstOrDefault(i => i.Id == item.CardId);
 
             if (itemCard == null)
                 return false;
@@ -132,6 +132,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
             }
 
             ItemCard itemCard = new(_availableItemCardNumber++, item.Title, type, authorOrNumber);
+            item.CardId = itemCard.Id;
             _itemCards.Add(itemCard);
         }
 

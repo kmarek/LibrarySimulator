@@ -3,6 +3,7 @@
     public class Item
     {
         public string Title { get; private set; }
+        public int CardId { get; set; }
 
         public Item(string title)
         {

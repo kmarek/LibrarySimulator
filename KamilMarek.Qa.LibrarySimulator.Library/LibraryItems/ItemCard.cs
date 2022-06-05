@@ -6,6 +6,7 @@
         public string AuthorOrNumber { get; set; }
         public string Title { get; set; }
         public char Type { get; set; }
+        public bool IsRented { get; set; }
 
         public ItemCard(int id, string title, char type, string authorOrNumber)
         {
@@ -13,6 +14,7 @@
             Title = title;
             AuthorOrNumber = authorOrNumber;
             Type = type;
+            IsRented = false;
         }
     }
 }

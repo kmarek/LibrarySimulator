@@ -45,6 +45,12 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
             if (itemCard == null)
                 return false;
 
+            if (userCard.RentedItems.Count >= userCard.MaxItemsCount)
+                return false;
+
+            itemCard.IsRented = true;
+            userCard.RentedItems.Add(itemCard);
+
             return true;
         }
 
@@ -95,6 +101,7 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
         public List<ItemCard> GetItems() => _itemCards;
         public int GetUniqueItemCount() => GetUniqueBookCount() + GetUniqueMagazineCount();
         public List<UserCard> GetUsers() => _userCards;
+        public int GetRentedCount(User user) => _userCards.FirstOrDefault(u => u.Id == user.LibraryCardId)?.RentedItems.Count ?? 0;
 
         #endregion
 

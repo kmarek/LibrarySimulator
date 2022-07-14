@@ -45,6 +45,9 @@ namespace KamilMarek.Qa.LibrarySimulator.Core
             if (itemCard == null)
                 return false;
 
+            if (itemCard.IsRented)
+                return false;
+
             if (userCard.RentedItems.Count >= userCard.MaxItemsCount)
                 return false;
 
